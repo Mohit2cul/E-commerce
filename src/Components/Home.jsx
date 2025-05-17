@@ -28,7 +28,8 @@ const Home = () => {
       setFilteredProducts(products);
     }
     if (category != "undefined") {
-      getproductcategory();
+      // getproductcategory();
+      setFilteredProducts(products.filter((p) => p.category === category));
     }
   }, [category,products]);
   // console.log(filteredproducts, "filtered products");

@@ -9,6 +9,7 @@ import Home from "./Components/Home";
 import Details from "./Components/Details";
 import Context from "./utils/Context";
 import Create from "./Components/Create";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   const { search, pathname } = useLocation();
@@ -24,6 +25,7 @@ const App = () => {
           </Link>
         )}
       <Context>
+        <Toaster />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/create" element={<Create />} />

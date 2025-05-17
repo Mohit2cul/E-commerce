@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { ProductContext } from "../utils/Context";
 import { nanoid } from "nanoid";
+import { toast } from "react-hot-toast";
 const Create = () => {
-  const [products, setproducts] = useState(ProductContext);
+  const { products, setProducts } = useContext(ProductContext);
   const [title, settitle] = useState("");
   const [image, setimage] = useState("");
   const [category, setcategory] = useState("");
@@ -11,26 +12,28 @@ const Create = () => {
 
   const AddProductHandler = (e) => {
     e.preventDefault();
-    if (
-      title.trim().length < 5 ||
-      image.trim().length < 5 ||
-      category.trim().length < 5 ||
-      price.trim().length < 1 ||
-      description.trim().length < 5
-    ) {
-      alert("Each and every field must have atleast 5 characters");
-      return;
-    }
+    // if (
+    //   title.trim().length < 5 
+    //   image.trim().length < 5 
+    //   category.trim().length < 5 
+    //   price.trim().length < 1 
+    //   description.trim().length < 5
+    // ) {
+    //   alert("Each and every field must have atleast 5 characters");
+    //   return;
+    // }
     const product = {
-      id: nanoid(),
+      id: Math.floor(Math.random() * 100) + 20,
       title,
       image,
       category,
       price,
       description,
     };
-    setproducts([...products, product]);
-    // toast.success("New product added successfully");
+    setProducts([...products, product]);
+    console.log(products);
+
+    toast.success("New product added successfully");
   };
 
   return (
@@ -44,7 +47,7 @@ const Create = () => {
             Add new products
           </h1>
           <input
-            type="url"
+            type="text"
             placeholder="image link"
             className="text-xl bg-zinc-200 rounded-lg p-1 w-1/2 mb-5"
             onChange={(e) => setimage(e.target.value)}
